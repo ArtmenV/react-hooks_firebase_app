@@ -6,7 +6,16 @@ export const Alert = () => {
   const { alert, hide } = useContext(AlertContext);
 
   return (
-    <CSSTransition in={alert.visible} timeout={750} classNames={"alert"}>
+    <CSSTransition
+      in={alert.visible}
+      timeout={{
+        enter: 500,
+        exit: 350
+      }}
+      classNames={"alert"}
+      mountOnEnter
+      unmountOnExit
+    >
       <div
         className={`alert alert-${alert.type || "warning"} alert-dismissible`}
       >
