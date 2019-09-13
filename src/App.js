@@ -4,22 +4,25 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Navbar } from "./component/Navbar";
 import { Alert } from "./component/Alert";
-import { AlertContext } from "./context/alert/Alert-Context";
+import { AlertState } from "./context/alert/Alert-State";
+import { FirebaseState } from "./context/firebase/FirebaseState";
 
 function App() {
   return (
-    <AlertContext>
-      <Router>
-        <Navbar />
-        <div className="container pt-4">
-          <Alert />
-          <Switch>
-            <Route path={"/"} exact component={Home} />
-            <Route path={"/about"} component={About} />
-          </Switch>
-        </div>
-      </Router>
-    </AlertContext>
+    <FirebaseState>
+      <AlertState>
+        <Router>
+          <Navbar />
+          <div className="container pt-4">
+            <Alert />
+            <Switch>
+              <Route path={"/"} exact component={Home} />
+              <Route path={"/about"} component={About} />
+            </Switch>
+          </div>
+        </Router>
+      </AlertState>
+    </FirebaseState>
   );
 }
 
